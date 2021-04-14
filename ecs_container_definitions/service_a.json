@@ -1,0 +1,37 @@
+[{
+  "logConfiguration": {
+    "logDriver": "awsfirelens",
+    "secretOptions": null,
+    "options": {
+      "Name": "es",
+      "Type": "_doc",
+      "Port": "443",
+      "Host": "vpc-main-evwu2mewlmtbksso27xdagx6k4.ap-southeast-1.es.amazonaws.com",
+      "Index": "service-a",
+      "tls": "On"
+    }
+  },
+  "portMappings": [
+    {
+      "hostPort": 8080,
+      "protocol": "tcp",
+      "containerPort": 8080
+    }
+  ],
+  "cpu": 0,
+  "image": "dgkanatsios/simpleapp:latest",
+  "essential": true,
+  "name": "service-a"
+},
+{
+  "cpu": 0,
+  "image": "906394416424.dkr.ecr.ap-southeast-1.amazonaws.com/aws-for-fluent-bit:latest",
+  "startTimeout": null,
+  "firelensConfiguration": {
+      "type": "fluentbit",
+      "options": null
+  },
+  "essential": true,
+  "user": "0",
+  "name": "log_router"
+}]
